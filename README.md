@@ -1,5 +1,5 @@
 # Focused UI Component with React `useReducer`
-A simple proof of concept code on using React's useReducers to create focused UI component.
+A simple proof of concept code on using React's `useReducer` to create focused UI component.
 
 This started simply with a goal of reducing the UI component's responsibilities down to:
 1. render the UI based on data
