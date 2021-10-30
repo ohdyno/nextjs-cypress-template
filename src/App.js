@@ -3,25 +3,27 @@ import {useReducer} from "react";
 
 const defaultInitialState = {text: 'data'};
 const defaultReducer = (state, action) => ({text: action.payload})
-
+export const createAction = payload => ({
+    type: 'action type',
+    payload: payload
+});
 
 function App({initialState = defaultInitialState, reducer = defaultReducer}) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    function selectAll(e) {
+    const selectAll = e => {
         e.target.select();
-    }
+    };
+
+    const updateState = (event) => {
+        dispatch(createAction(event.target.value))
+        event.preventDefault();
+    };
 
     return (
         <div>
-            <label>input
-                <input value={state.text} onFocus={selectAll} onChange={(event) => {
-                    dispatch({
-                        type: 'correct action name',
-                        payload: event.target.value
-                    })
-                    event.preventDefault();
-                }}/>
+            <label>Input:
+                <input value={state.text} onFocus={selectAll} onChange={updateState}/>
             </label>
         </div>
     );
