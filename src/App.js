@@ -1,4 +1,3 @@
-import './App.css';
 import {useReducer} from "react";
 
 const defaultInitialState = {text: 'data'};
