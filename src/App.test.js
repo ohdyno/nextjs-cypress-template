@@ -33,4 +33,11 @@ describe('Simplify UI into two responsibilities using reducers', () => {
 
         expect(captured.result).toEqual(createAction('some new data'));
     });
+
+    it('renders with default props', () => {
+        render(<App />);
+
+        const input = screen.getByLabelText(/input/i);
+        expect(input).toBeInTheDocument();
+    });
 })
