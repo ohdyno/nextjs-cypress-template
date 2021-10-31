@@ -7,8 +7,15 @@ export const createAction = payload => ({
     payload: payload
 });
 
+function uiSlice(initialState) {
+    if (initialState.text) {
+        return initialState;
+    }
+    return initialState.ui;
+}
+
 function App({initialState = defaultInitialState, reducer = defaultReducer}) {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState, uiSlice);
 
     const selectAll = e => {
         e.target.select();

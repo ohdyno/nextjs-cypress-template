@@ -35,9 +35,22 @@ describe('Simplify UI into two responsibilities using reducers', () => {
     });
 
     it('renders with default props', () => {
-        render(<App />);
+        render(<App/>);
 
         const input = screen.getByLabelText(/input/i);
         expect(input).toBeInTheDocument();
+    });
+
+    it('renders nested data from props', () => {
+        const initialState = {
+            ui: {
+                text: "some data"
+            }
+        };
+
+        render(<App initialState={initialState}/>);
+
+        const renderedData = screen.getByDisplayValue(new RegExp(`${initialState.ui.text}`, 'i'));
+        expect(renderedData).toBeInTheDocument();
     });
 })
