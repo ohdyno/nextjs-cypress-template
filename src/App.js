@@ -1,7 +1,15 @@
 import {useReducer} from "react";
+import Child from "./Child";
 
-const defaultInitialState = {text: 'data'};
-const defaultReducer = (state, action) => ({text: action.payload})
+const defaultInitialState = {text: 'data', childText: 'child component text'};
+const defaultReducer = (state, action) => {
+    switch (action.type) {
+        case 'button pressed':
+            return {...state, childText: 'child button clicked'}
+        default:
+            return {...state, text: action.payload};
+    }
+}
 export const createAction = payload => ({
     type: 'action type',
     payload: payload
@@ -31,6 +39,7 @@ function App({initialState = defaultInitialState, reducer = defaultReducer}) {
             <label>Input:
                 <input value={state.text} onFocus={selectAll} onChange={updateState}/>
             </label>
+            <Child state={{text: state.childText}} dispatch={dispatch}/>
         </div>
     );
 }
